@@ -1,105 +1,72 @@
-# AI Smart Rep Counter using OpenCV and MediaPipe
+# AI Smart Rep Counter using OpenCV
 
-## Description
-AI Smart Rep Counter is a real-time exercise detection and rep-counting application built using **Python**, **OpenCV**, and **MediaPipe**. It can detect exercises such as **bicep curls, squats, push-ups, lateral raises, and shoulder presses** from your webcam feed, count repetitions, and track workout progress.  
-
-This tool is perfect for fitness enthusiasts who want to monitor their workouts without needing a trainer or specialized equipment.
+This project is an **AI-powered exercise tracking system** that detects and counts repetitions for various exercises like bicep curls, squats, push-ups, lateral raises, and shoulder presses using **OpenCV** and **MediaPipe**. It provides real-time feedback with rep counts, exercise stage, and smooth angle measurements.
 
 ---
 
-## Features
-- Real-time exercise detection using webcam.
-- Automatic **rep counting** for multiple exercises.
-- Tracks **stage** of movement (up/down) for accurate counting.
-- Smoothing of joint angles to reduce noise.
-- Configurable exercise parameters like angle thresholds, minimum rep time, and range of motion.
-- Easily extendable for new exercises.
-- Web-based interface with **Flask**:
-  - Live webcam feed
-  - Exercise selection buttons
-  - Reps and stage display
+## 📂 Dataset & Input
+
+- Real-time webcam video feed is used as input.  
+- No static dataset required; the system processes your body pose live using MediaPipe Pose landmarks.
 
 ---
 
-## Supported Exercises
-| Exercise         | Description                        |
-|-----------------|------------------------------------|
-| Bicep Curl       | Detects arm curls                  |
-| Squat            | Tracks knee angle for squats       |
-| Push-Up          | Tracks elbow angle for push-ups    |
-| Lateral Raise    | Tracks shoulder abduction angle    |
-| Shoulder Press   | Tracks shoulder & elbow angle      |
+## 🔧 Tools & Libraries
+
+- Python  
+- OpenCV  
+- MediaPipe  
+- NumPy  
+- Flask (for web interface)  
+- HTML/CSS/JavaScript (for frontend UI)  
 
 ---
 
-## Installation
+## 📊 Project Highlights
 
-1. **Clone the repository**:
+### 1. Exercise Detection & Rep Counting
+- Detects body landmarks using MediaPipe Pose  
+- Calculates joint angles for relevant exercises  
+- Counts repetitions with **hysteresis thresholds** and **smooth angle tracking**  
+- Tracks the **stage** of exercise (up/down) for accurate rep counting  
 
-git clone https://github.com/SahilKadolkar/Ai-Smart-Rep-Counter-using-Opencv.git
-cd Ai-Smart-Rep-Counter-using-Opencv
+### 2. Supported Exercises
+- **Bicep Curl** – Elbow angle detection  
+- **Squat** – Knee angle detection  
+- **Push-Up** – Average elbow angle  
+- **Lateral Raise** – Shoulder abduction angle  
+- **Shoulder Press** – Elbow/shoulder extension  
 
-2.  **Create a virtual environment** :
+### 3. Real-Time Feedback
+- Displays live **rep count**, **stage**, and **current angle** on the video feed  
+- Alerts when landmarks are not visible  
 
-python -m venv env
+---
 
-3. **Activate the virtual environment** :
+## 📈 Sample Interface
 
-Windows:
+- Live video feed with overlays for:
+  - Exercise name  
+  - Reps counted  
+  - Stage (up/down)  
+  - Joint angle  
 
-env\Scripts\activate
+- Buttons to **switch between exercises** dynamically  
 
+---
 
-Mac/Linux:
+## 📌 Future Improvements
+- Store full workout sessions for analysis  
+- Generate visual insights like graphs of reps, sets, and exercise distribution  
+- Add more exercises and custom workout routines  
+- Integrate with a mobile-friendly interface  
 
-source env/bin/activate
+---
 
+## 🤝 Acknowledgements
+- **MediaPipe** for pose estimation  
+- **OpenCV** for video processing  
 
-4. **Install dependencies** :
+---
 
-pip install -r requirements.txt
-
-** Usage
-
-1. Run the Flask app:
-
-python app.py
-
-
-2. Open your browser and go to:
-
-http://127.0.0.1:5000/
-
-
-3. Choose an exercise using the buttons.
-
-4. The webcam feed will show:
-
-Exercise name
-
-Current rep count
-
-Stage (up/down)
-
-Angle of relevant joints
-
-File Structure
-├─ app.py                # Main Flask application
-├─ templates/
-│   └─ index.html        # Frontend HTML page
-├─ requirements.txt      # Python dependencies
-├─ README.md             # Project documentation
-
-
-Note: Do not include the virtual environment (env/) in the repository. Add it to .gitignore.
-
-Contributing
-
-Feel free to fork the repository and add new exercises, improve detection, or enhance UI features.
-
-License
-
-This project is open-source and available under the MIT License.
-
-
-I can also create a **.gitignore** for you that excludes the virtual environment and other large files s
+## 📁 Folder Structure
