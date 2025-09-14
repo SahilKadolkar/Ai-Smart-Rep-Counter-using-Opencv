@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Workout Summary for {{ summary.user }}</h1>
+    <p>Total Duration: {{ summary.duration_min }} mins</p>
+    <p>Total Reps: {{ summary.total_reps }}</p>
+    <p>Calories Burned: {{ summary.calories }} kcal</p>
+
+    <h2>Exercise Breakdown</h2>
+    <ul>
+    {% for ex, sets in summary.exercises.items() %}
+        <li>{{ ex }}:
+            <ul>
+            {% for s in sets %}
+                <li>Set {{ s.set }}: {{ s.reps }} reps ({{ s.calories }} kcal)</li>
+            {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Charts</h2>
+    <canvas id="repsChart"></canvas>
+    <canvas id="caloriesChart"></canvas>
+
+    <script>
+    const labels = {{ summary.exercise_totals.keys()|list|tojson }};
+    const repsData = {{ summary.exercise_totals.values()|list|tojson }};
+    const calData = {{ summary.calories_totals.values()|list|tojson }};
+
+    new Chart(document.getElementById('repsChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total Reps per Exercise',
+                data: repsData,
+                backgroundColor: 'rgba(75, 192, 192, 0.7)'
+            }]
+        }
+    });
+
+    new Chart(document.getElementById('caloriesChart'), {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Calories Burned per Exercise',
+                data: calData,
+                backgroundColor: ['red','blue','green','orange']
+            }]
+        }
+    });
+    </script>
+</body>
+</html>

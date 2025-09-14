@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Fitness Tracker</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>AI Exercise Counter</h1>
+
+    <!-- Exercise Selection -->
+    <div>
+        <button onclick="setExercise('bicep_curl')">Bicep Curl</button>
+        <button onclick="setExercise('squat')">Squat</button>
+        <button onclick="setExercise('pushup')">Push-up</button>
+        <button onclick="setExercise('lateral_raise')">Lateral Raise</button>
+        <button onclick="setExercise('shoulder_press')">Shoulder Press</button>
+    </div>
+
+    <br>
+
+    <!-- Workout Control -->
+    <div>
+        <button onclick="startSession()">Start Workout</button>
+        <button onclick="stopSession()">Stop Workout</button>
+    </div>
+
+    <br>
+
+    <!-- Video Feed -->
+    <img src="{{ url_for('video'   ) }}" width="720" height="520">
+
+    <script>
+        function setExercise(exercise) {
+            fetch(`/set_exercise/${exercise}`)
+                .then(res => res.text())
+                .then(data => alert(data));
+        }
+
+        function startSession() {
+            fetch("/start_session")
+                .then(res => res.text())
+                .then(data => alert(data));
+        }
+
+        function stopSession() {
+            fetch("/stop_session")
+                .then(res => res.text())
+                .then(data => alert(data));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout</title>
+</head>
+<body>
+    {% if not started %}
+        <h2>Welcome, {{ user }}!</h2>
+        <p>Click below to begin your workout.</p>
+        <form method="POST">
+            <button type="submit" name="start_workout">Start Workout</button>
+        </form>
+    {% else %}
+        <h2>Workout in Progress - {{ user }}</h2>
+
+        <form method="POST" action="{{ url_for('start_set') }}">
+            <label for="exercise">Choose Exercise:</label>
+            <select name="exercise">
+                <option value="Bicep Curl">Bicep Curl</option>
+                <option value="Squat">Squat</option>
+                <option value="Push Up">Push Up</option>
+            </select>
+            <button type="submit">Start Set</button>
+        </form>
+
+        <form method="POST" action="{{ url_for('end_set') }}">
+            <button type="submit">End Set</button>
+        </form>
+
+        <form method="GET" action="{{ url_for('end_workout') }}">
+            <button type="submit">End Workout</button>
+        </form>
+    {% endif %}
+</body>
+</html>
