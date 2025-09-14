@@ -35,7 +35,7 @@ This tool is perfect for fitness enthusiasts who want to monitor their workouts 
 ## Installation
 
 1. **Clone the repository**:
-```bash
+
 git clone https://github.com/SahilKadolkar/Ai-Smart-Rep-Counter-using-Opencv.git
 cd Ai-Smart-Rep-Counter-using-Opencv
 
