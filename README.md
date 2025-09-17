@@ -67,6 +67,3 @@ This project is an **AI-powered exercise tracking system** that detects and coun
 - **MediaPipe** for pose estimation  
 - **OpenCV** for video processing  
 
----
-
-## 📁 Folder Structure
